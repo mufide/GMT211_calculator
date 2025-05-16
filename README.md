@@ -19,16 +19,18 @@ your_project/
         └── python-test.yml
 ```
 
-- **your_project.py**: Your main implementation (e.g., shortest path algorithm).
+- **your_project.py**: Edit file name. Your main implementation (e.g., shortest path algorithm).
 - **test_your_project.py**: `pytest` file with constraints to validate the logic.
 - **requirements.txt**: Required packages written line by line (e.g., `numpy`, `pytest`).
 - **README.md**: Project description and link to Sphinx docs.
 - **.github/workflows/python-test.yml**: GitHub Actions workflow file for CI.
-- **setup.py** and **__init__.py**: Required for packaging and uploading to TestPyPI.
+- **setup.py** and **__init__.py**: Required for packaging and uploading to TestPyPI. It will be mentioned in the relevant step.
 
 ---
 
 ## 2. Generate Sphinx Documentation
+
+Sphinx documentation is a detailed user guide for project codes. Readme or Project description on testpypi is a general explanation of what the code does and for what purposes it can be used.
 
 ### Install Required Tools
 
@@ -39,7 +41,7 @@ pip install sphinx sphinx_rtd_theme
 ### Create Initial Sphinx Files
 
 Navigate to your project root directory and run:
-
+(You can also use another theme)
 ```bash
 sphinx-quickstart docs
 ```
@@ -52,12 +54,13 @@ Answer prompts as follows:
 > Author name(s): YourName
 > Project release: 0.1
 ```
+After this process, files such as source/, build/, Makefile, make.bat are created under the docs folder.
 
 ### Auto-generate `.rst` Files
 
 ```bash
 cd docs
-sphinx-apidoc -o source ../projekodları
+sphinx-apidoc -o source ../your_project_code
 ```
 
 ### Build HTML Documentation (on Windows)
@@ -75,11 +78,12 @@ Open the file at:
 ```
 docs/build/html/index.html
 ```
+You can double-click the index.html file and open it in your browser.
 
 ### Regenerate Documentation After Updates
 
 ```bash
-sphinx-apidoc -f -o docs/source ../projekodları
+sphinx-apidoc -f -o docs/source ../your_project_code
 cd docs
 .\make.bat html
 ```
@@ -88,8 +92,8 @@ cd docs
 
 ## 3. Upload to GitHub
 
-Initialize a Git repository and push to your GitHub repo:
-
+Initialize a Git repository and push to your GitHub repo (https://github.com/mufide/GMT211-Tutorial).
+If you have trouble uploading to the main branch, follow these steps;
 ```bash
 git init
 git remote add origin https://github.com/yourusername/yourrepo.git
@@ -101,7 +105,7 @@ git push -u origin main
 
 ## 4. Prepare Files for TestPyPI
 
-TestPyPI is a sandbox version of the Python Package Index.
+TestPyPI is a sandbox version of the Python Package Index. We will upload homework or trial packages here to avoid creating unnecessary weight by uploading the same packages to the PyPI database over and over again. However, you can use PyPI when you have completed other package tests, there are no permission restrictions.
 
 ###  Install Required Packages
 
@@ -118,7 +122,7 @@ with open("README.md", "r") as f:
     description = f.read()
 
 setup(
-    name='shortestpath00000000',  # Replace with your student ID
+    name='shortestpath00000000',  # Replace with your student ID !!
     version='0.1.0',
     author='Your Name',
     author_email='youremail@example.com',
@@ -127,7 +131,7 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/yourusername/yourrepo',
     packages=find_packages(),
-    install_requires=[
+    install_requires=[ #You should write which packages are required in your project.
         'numpy>=1.21.0',
         'pandas>=1.3.0',
     ],
@@ -188,3 +192,5 @@ If uploaded to the real PyPI:
 ```bash
 pip install shortestpath00000000
 ```
+
+#Congratulations !
